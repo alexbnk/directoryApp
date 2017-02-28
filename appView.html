@@ -6,11 +6,13 @@
 
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body ng-app="directoryApp">
 <div class="container">
   <div class="page-header">
-    <h1>Angular Directory App </i></h1>
+    <h1>Directory App </h1>
+    <h2>The angular way</h2>
   </div>
     <div class="row">
         <div class="col-md-6 ">
@@ -20,11 +22,13 @@
           <div class="section" >
             <h3> People in directory (read-write)</h3>
               <div  ng-controller="directoryCtrl">
-                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="fullname in people track by $index" >
-                    <div class="card-block">
+                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="fullName in people track by $index" >
+                    <div class="card-block"> <i class="glyphicon glyphicon-remove pull-right" ng-click="delete($index)"></i>
                       <div class="form-group no-border person">
-                        <h4>Person #{{$index + 1}} <input class="form-control" type="text" name="firstNameField" value="{{fullname.firstName}}" ></h4>
-                        <input class="form-control" type="text" name="lastNameField" value="{{fullname.lastName}}">
+                        <h4>Person #{{$index + 1}} </h4>
+                        <input class="form-control" type="text"  ng-model="fullName.firstName" />
+                        <input class="form-control" type="text"  ng-model="fullName.lastName "/>
+                        <input class="btn btn-success" ng-click="change($index)" value="update"/>
                     </div>
                   </div>
           </div>
@@ -35,7 +39,7 @@
     <div class="col-md-6 ">
 
         <div class="section" >
-          <h3> People in directory (updates from array)</h3>
+          <h3> People in directory (updates from Model)</h3>
             <div ng-controller="directoryCtrl">
                 <ul ng-repeat="name in people" >
                     <li> {{name.firstName}} {{name.lastName}}</li>
