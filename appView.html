@@ -6,16 +6,51 @@
 
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body ng-app="directoryApp">
 <div class="container">
+  <div class="page-header">
+    <h1>Directory App </h1>
+    <h2>The angular way</h2>
+  </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="page-header">
-            <h1>Angular People Directory App </i></h1>
-          </div>
+        <div class="col-md-6 ">
 
-<div class="section" ng-controller="appCtrl">
+
+
+          <div class="section" >
+            <h3> People in directory (read-write)</h3>
+              <div  ng-controller="directoryCtrl">
+                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="fullName in people track by $index" >
+                    <div class="card-block"> <i class="glyphicon glyphicon-remove pull-right" ng-click="delete($index)"></i>
+                      <div class="form-group no-border person">
+                        <h4>Person #{{$index + 1}} </h4>
+                        <input class="form-control" type="text"  ng-model="fullName.firstName" />
+                        <input class="form-control" type="text"  ng-model="fullName.lastName "/>
+                        <input class="btn btn-success" ng-click="change($index)" value="update"/>
+                    </div>
+                  </div>
+          </div>
+        </div>
+</div>
+</div>
+
+    <div class="col-md-6 ">
+
+        <div class="section" >
+          <h3> People in directory (updates from Model)</h3>
+            <div ng-controller="directoryCtrl">
+                <ul ng-repeat="name in people" >
+                    <li> {{name.firstName}} {{name.lastName}}</li>
+                  </ul>
+
+                  </div>
+                </div>
+
+
+
+          <!-- <div class="section" ng-controller="directoryCtrl">
             <h2>People</h2>
 
             <div class="alert alert-warning" role="alert" >
@@ -26,7 +61,7 @@
 
             </div>
           </div>
-</div>
+        </div> -->
 
 </div>
 </div>
@@ -40,3 +75,5 @@
 <!-- initialization scripts -->
 <script src="node_modules/angular/angular.js"></script>
 <script src="app.js"></script>
+<script src="appMdl.js"></script>
+<script src="appCtrl.js"></script>
