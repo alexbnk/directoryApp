@@ -10,7 +10,13 @@ var deleteThis = function(id) {
 
 var add = function(o,t,n,p,s) {
   var creationTime = Date();
-  tasks.push({created: creationTime, owner:o,text:t,note:n,priority:p,status:false})
+  tasks.push({created: creationTime, owner:o,text:t,note:n,priority:p,status:false});
+
+  console.log("Added task #"+tasks.length );
+};
+
+var done = function(id) {
+    tasks[id].status = true;
 };
 
 var tasks = [
@@ -31,7 +37,8 @@ status:true}
 return { tasks: tasks,
         change: change,
         delete: deleteThis,
-        add: add
+        add: add,
+        done: done
   };
 
 })

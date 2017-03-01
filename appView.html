@@ -20,12 +20,13 @@
         </div>
   <div class="col-md-4 ">
           <div class="input-group">
-        <input type="text" class="form-control" ng-model="newTaskText" aria-label="Text input with dropdown button">
+            <form id="newTaskForm">
+        <input type="text" class="form-control" name="newTaskText" >
         <div class="input-group-btn">
-          <button type="button" class="btn btn-primary "  aria-haspopup="true" aria-expanded="false" ng-click="add(newTaskText)">
+          <button type="button" class="btn btn-primary "  aria-haspopup="true" aria-expanded="false" ng-click="add(newTaskForm.newTaskText)">
             Add Task
           </button>
-
+</form>
         </div>
       </div>
     </div>
@@ -36,31 +37,33 @@
       <div class="col-md-6 ">
           <div class="section" >
             <span><h3> To Do </h3></span>
-              <div  >
-                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="task in tasks | filter:{status:false} track by $index" >
-                    <div class="card-block"> <i class="glyphicon glyphicon-remove pull-right" ng-click="delete($index)"></i>
-                      <div class="form-group no-border person">
-                        <h4>Task #{{$index + 1}} </h4>
-                        <h7>{{task.status}} <h7>
+                  <div class="card w-75 alert alert-info" role="alert" ng-repeat="task in tasks | filter:{status:false} track by $index" >
+                    <div class="card-block">
+                      <i class="glyphicon glyphicon-remove-circle pull-right" ng-click="delete($index)"></i>
+                      <i class="glyphicon glyphicon-ok pull-right" ng-click="done($index)"> </i>
 
-
+                    <div class="form-group no-border">
+                      <h4>{{task.text}}</h4>
+                      <h5>Priority:{{task.priority}} </h5>
+                      <h6>Created: {{task.created}}</h6>
+                        <textarea style="width: 100%; border: none;text-decoration: line-through; " name="note"  >{{task.note}}</textarea>
                     </div>
                   </div>
-          </div>
-        </div>
-</div>
+                </div>
+              </div>
 </div>
         <div class="col-md-6 ">
           <div class="section" >
             <h3> Done stuff</h3>
               <div>
-                  <div class="card w-75 alert  " role="alert" ng-repeat="taskDone in tasks  | filter:{status:true}  track by $index" >
+                  <div class="card w-75 alert alert-success " role="alert" ng-repeat="taskDone in tasks  | filter:{status:true}  track by $index" >
                     <div class="card-block"> <i class="glyphicon glyphicon-remove-circle pull-right" ng-click="delete($index)"></i>
                       <div class="form-group no-border person">
                         <h4>{{taskDone.text}}</h4>
                         <h5>Priority:{{taskDone.priority}} </h5>
                         <h6>Created: {{taskDone.created}}</h6>
-                        <textarea style="width: 100%; border: none;text-decoration: line-through; " name="note">{{taskDone.note}}</textarea>
+                        <textarea style="width: 100%; border: none;text-decoration: line-through; " name="note"  >{{taskDone.note}}</textarea>
+
 
 
                     </div>

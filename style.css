@@ -1,1 +1,18 @@
 i { cursor: pointer; }
+
+.glyphicon {
+margin-left: 5px;
+margin-right:5px;
+}
+
+}
+.glyphicon-remove-circle {
+  color: red;
+  font-size: 30px;
+}
+
+.glyphicon-ok {
+  color: ‎green	;
+  font-size: 30px;
+
+}
