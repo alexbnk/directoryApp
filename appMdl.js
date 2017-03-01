@@ -1,31 +1,37 @@
-app.factory('directoryFactory', function () {
+app.factory('todoFactory', function () {
 
-var change = function(id,fn,ln) {
-      console.log(id,fn,ln);
+var change = function(id) {
+      console.log(id);
       //people.splice(id,1,{firstName:firstName, lastName:lastName);
 };
 var deleteThis = function(id) {
-  people.splice(id,1);
+  tasks.splice(id,1);
 };
 
-var people = [
-{firstName: "Bob",
-lastName : "Longbeard"},
-{firstName: "John",
-lastName : "The Ripper"},
-{firstName: "Olivia",
-lastName : "Newton"},
-{firstName: "Jeff",
-lastName : "Barsky"},
-{firstName: "Jason",
-lastName : "Donovan"},
-{firstName: "Kylie",
-lastName : "Minouge"}
+var add = function(o,t,n,p,s) {
+  var creationTime = Date();
+  tasks.push({created: creationTime, owner:o,text:t,note:n,priority:p,status:false})
+};
+
+var tasks = [
+{created: Date(),
+owner : "alex",
+text  : "This is a sample task",
+note  : "just a note",
+priority: 5,
+status:false},
+{created: Date(),
+owner : "alex",
+text  : "This is a DONE task",
+note  : "just a note",
+priority: 5,
+status:true}
   ];
 
-return {people: people,
+return { tasks: tasks,
         change: change,
-        delete: deleteThis
+        delete: deleteThis,
+        add: add
   };
 
 })

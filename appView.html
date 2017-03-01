@@ -2,70 +2,77 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Angular People Directory App</title>
+    <title>Angular To Do</title>
 
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body ng-app="directoryApp">
+  <body ng-app="todoApp">
 <div class="container">
   <div class="page-header">
-    <h1>Directory App </h1>
+    <h1>ToDo App  </h1>
     <h2>The angular way</h2>
   </div>
-    <div class="row">
-        <div class="col-md-6 ">
+  <div ng-controller="todoCtrl">
+    <div class="row" >
+        <div class="col-md-4 ">
+        </div>
+  <div class="col-md-4 ">
+          <div class="input-group">
+        <input type="text" class="form-control" ng-model="newTaskText" aria-label="Text input with dropdown button">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-primary "  aria-haspopup="true" aria-expanded="false" ng-click="add(newTaskText)">
+            Add Task
+          </button>
 
-
-
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+    </div>
+  </div>
+      <div class="row">
+      <div class="col-md-6 ">
           <div class="section" >
-            <h3> People in directory (read-write)</h3>
-              <div  ng-controller="directoryCtrl">
-                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="fullName in people track by $index" >
+            <span><h3> To Do </h3></span>
+              <div  >
+                  <div class="card w-75 alert alert-warning" role="alert" ng-repeat="task in tasks | filter:{status:false} track by $index" >
                     <div class="card-block"> <i class="glyphicon glyphicon-remove pull-right" ng-click="delete($index)"></i>
                       <div class="form-group no-border person">
-                        <h4>Person #{{$index + 1}} </h4>
-                        <input class="form-control" type="text"  ng-model="fullName.firstName" />
-                        <input class="form-control" type="text"  ng-model="fullName.lastName "/>
-                        <input class="btn btn-success" ng-click="change($index)" value="update"/>
+                        <h4>Task #{{$index + 1}} </h4>
+                        <h7>{{task.status}} <h7>
+
+
                     </div>
                   </div>
           </div>
         </div>
 </div>
 </div>
-
-    <div class="col-md-6 ">
-
-        <div class="section" >
-          <h3> People in directory (updates from Model)</h3>
-            <div ng-controller="directoryCtrl">
-                <ul ng-repeat="name in people" >
-                    <li> {{name.firstName}} {{name.lastName}}</li>
-                  </ul>
-
-                  </div>
-                </div>
-
-
-
-          <!-- <div class="section" ng-controller="directoryCtrl">
-            <h2>People</h2>
-
-            <div class="alert alert-warning" role="alert" >
-              <input type="text" ng-model="textInput" placeholder="Insert to list...">
-              <input class="btn btn-success" value="insert" ng-click="">
+        <div class="col-md-6 ">
+          <div class="section" >
+            <h3> Done stuff</h3>
               <div>
-                <div class="alert alert-success" role="alert" ng-repeat="arrayIteration in list track by $index"> {{arrayIteration}} <i ng-click="deleteFromArray($index)" class="glyphicon glyphicon-remove-circle"></i></div>
+                  <div class="card w-75 alert  " role="alert" ng-repeat="taskDone in tasks  | filter:{status:true}  track by $index" >
+                    <div class="card-block"> <i class="glyphicon glyphicon-remove-circle pull-right" ng-click="delete($index)"></i>
+                      <div class="form-group no-border person">
+                        <h4>{{taskDone.text}}</h4>
+                        <h5>Priority:{{taskDone.priority}} </h5>
+                        <h6>Created: {{taskDone.created}}</h6>
+                        <textarea style="width: 100%; border: none;text-decoration: line-through; " name="note">{{taskDone.note}}</textarea>
 
-            </div>
+
+                    </div>
+                  </div>
           </div>
-        </div> -->
+        </div>
+</div>
+        </div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
 
 
 
@@ -77,3 +84,5 @@
 <script src="app.js"></script>
 <script src="appMdl.js"></script>
 <script src="appCtrl.js"></script>
+</body>
+</html>
